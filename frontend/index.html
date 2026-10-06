@@ -7,25 +7,88 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<header>
     <h1>Book a Service</h1>
     <p>Browse our services and request appointment.</p>
+</header>
+
 <section>
     <h2> Our Services</h2>
+
+    <div class="service-list">
     <article>
-        <h3> Business 1 Service</h3>
-        <p>Service 1</p>
-        <p>Price $</p>
-        <p>Duration of Service</p>
-        <button type="button">Request Appointment</button>
+        <h3>Service 1</h3>
+        <p>A standard service appointment.</p>
+        <p>Price: $60</p>
+        <p>Duration: 60 minutes</p>
+        <button type="button" data-service="Service 1">Request Appointment</button>
     </article>
+    
     <article>
-        <h3>Buisness 2 Services</h3>
-        <p>Service 2</p>
-        <p>Price $150</p>
-        <p>Duration 90 minutes</p>
-        <button type="button">Request Appointment</button>
+        <h3>Service 2</h3>
+        <p>A longer service appointment.</p>
+        <p>Price: $150</p>
+        <p>Duration: 90 minutes</p>
+        <button type="button" data-service="Service 2">Request Appointment</button>
     </article>
-</section>        
+    
+    <article>
+        <h3>Service 3</h3>
+        <p>Another service appointment</p>
+        <p>Price: $100</p>
+        <p>Duration: 60 minutes</p>
+        <button type="button" data-service="Service 3">Request Appointment</button>
+    </article>
+
+</div>
+
+</section> 
+<p id="selected-service">No service selected yet.</p>
+
+<form>
+    <h2>Request an Appointment</h2>
+    <p>Your appointment is confirmed only after the business approves your request.</p>
+<div class="form-field">
+    <label for="requested-service">Service</label>
+    <select id="requested-service" name="service" required>
+        <option value="">Choose a service</option>
+        <option value="Service 1">Service 1</option>
+        <option value="Service 2">Service 2</option>
+        <option value="Service 3">Service 3</option>
+    </select>
+</div>
+
+<div class="form-field">
+    <label for="customer-name" id="customerName">Your name</label>
+    <input type="text" id="customer-name" name="customerName" required>
+</div>
+
+<div class="form-field"> 
+    <label for="customer-email">Your email</label>
+    <input type="email" id="customer-email" name="customerEmail" required>
+</div>
+
+<div class="form-field">
+    <label for="appointment-date">Preferred date</label>
+    <input type="date" id="appointment-date" name="appointmentDate" required>
+</div> 
+
+<div class="form-field">   
+    <label for="appointment-time">Preferred time</label>
+    <input type="time" id="appointment-time" name="appointmentTime" required>
+</div>   
+
+<div class="form-field"> 
+    <label for="appointment-notes">Describe what you need (Optional)</label>
+    <textarea id="appointment-notes" name="appointmentNotes" rows="4" ></textarea>
+</div>    
+
+
+    <button type="submit">Submit request</button>
+
+</form>   
+<script src="script.js"></script>    
 </body>
 </html>
     
