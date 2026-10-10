@@ -1,120 +1,235 @@
+﻿:root {
+    /* Warm cream, white, navy, and teal create a bright, easy-to-read palette. */
+    color-scheme: light;
+    --background: #f6f3ed;
+    --surface: #ffffff;
+    --border: #a7b8bc;
+    --text: #203247;
+    --muted: #485c66;
+    --accent: #087f83;
+    --input-background: #f1f6f5;
+    --accent-soft: #e1f1ee;
+    --accent-hover: #06666a;
+}
+
+/* Text uses rem units so it follows the browser's preferred font size. */
+/* Page defaults: include padding in element widths and keep the content centered. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-    font-family: Arial, sans-serif;
-    background-color:#e5e9e6;
-    color:#1f2937;
-    padding: 24px;
-    max-width: 800px;
     margin: 0 auto;
-    line-height: 1.5;
+    max-width: 1120px;
+    padding: 32px 40px 48px;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    text-align: center;
+    text-shadow: 0 1px 1px rgb(32 50 71 / 7%);
 }
 
-
-article {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
+/* Brand and shortcut to the appointment form. */
+.site-nav {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+/* Large wordmark with a tilted teal badge; sizes adapt to narrow screens. */
+.site-nav .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 20px);
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    padding: 12px 0;
+    color: var(--text);
+}
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: clamp(48px, 8vw, 72px);
+    height: clamp(48px, 8vw, 72px);
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #109b9c, var(--accent-hover));
+    color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 6px 0 #c4dfd9, 0 12px 24px rgb(8 127 131 / 18%);
+    transform: rotate(-8deg);
+}
+.brand-mark svg { width: 70%; height: 70%; }
+.brand-name span { color: var(--accent); }
+a { color: inherit; text-decoration: none; }
+.site-nav a { color: var(--text); font-size: 1.125rem; }
+.site-nav a:hover { color: var(--accent); }
+
+/* Main introduction. The headline size adapts to the screen width using clamp(). */
+header { padding: 64px 0 48px; max-width: 720px; margin-inline: auto; }
+.eyebrow {
+    color: var(--accent);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin: 0 0 16px;
+}
+header h1 {
+    font-size: clamp(2.625rem, 7vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin: 0 0 22px;
+    text-shadow: 0 2px 3px rgb(32 50 71 / 10%);
+}
+header > p:last-child { color: var(--muted); font-size: 1.25rem; max-width: 510px; margin: 0 auto; }
+h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: 0; margin: 0; }
+
+/* Booking instructions: a CSS counter numbers the three steps automatically. */
+.booking-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding: 24px 0;
+    margin-bottom: 48px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    counter-reset: steps;
+}
+.booking-steps h2 { grid-column: 1 / -1; font-size: 1.5rem; letter-spacing: 0; }
+.booking-steps p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 12px;
+    color: var(--muted);
+    font-size: 1.125rem;
+    counter-increment: steps;
 }
-
-
+.booking-steps p::before {
+    content: counter(steps);
+    color: var(--accent);
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding-top: 1px;
+}
+.section-heading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 20px; }
+.section-heading p { margin: 0; color: var(--muted); font-size: 1.125rem; }
+/* Service cards sit side by side on larger screens and stack on smaller screens. */
+.service-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+article {
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgb(32 50 71 / 6%);
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color .2s, transform .2s;
+}
+article:hover { border-color: var(--accent); transform: translateY(-3px); }
+.service-number { color: var(--accent); font-size: 1.125rem; font-weight: 600; }
+article h3 { font-size: 1.5rem; font-weight: 600; letter-spacing: 0; }
+article h3, article p { margin: 0; }
+article > p:not(.service-price):not(.service-duration):not(.service-number) { color: var(--muted); font-size: 1.125rem; min-height: 52px; }
+.service-price { font-size: 2.25rem; font-weight: 600; letter-spacing: -1px; }
+.service-price span { font-size: 1.125rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+.service-duration { color: var(--muted); font-size: 1.125rem; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+/* Shared button styles; service card buttons have their own outlined variation below. */
 button {
-    background-color: #28292b;
-    color: white;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    align-content: center;
-}
-
-
-button:hover {
-    background-color: #426464;
-}
-
-
-form {
-    background-color: white;
-    padding: 10px;
+    font: inherit;
+    font-size: 1.125rem;
+    font-weight: 600;
+    background: var(--accent);
+    color: #ffffff;
+    padding: 13px 18px;
+    border: 1px solid transparent;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgb(0 0 0 / 12%);
+    transition: background .2s;
 }
+button:hover { background: var(--accent-hover); }
+.service-list button { margin-top: auto; width: 100%; background: var(--accent-soft); border-color: var(--accent); color: #065d61; text-shadow: none; }
+.service-list button:hover { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+#selected-service { color: var(--text); font-size: 1.125rem; margin: 18px auto 48px; padding: 10px 18px; width: fit-content; max-width: 100%; border-bottom: 2px solid var(--accent); }
 
-
+/* Appointment form: two columns on larger screens, with a centered maximum width. */
+form {
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgb(32 50 71 / 6%);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 860px;
+    margin-inline: auto;
+}
+/* Span both columns for the heading, service selector, notes, and submit area.
+   :has() selects a field based on the control inside it. */
+form h2, form > p, .form-field:has(select), .form-field:has(textarea), .form-footer { grid-column: 1 / -1; }
+form h2, form p { margin: 0; }
+.approval-note { color: var(--muted); font-size: 1.125rem; padding-bottom: 8px; }
+.form-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+label { font-size: 1.125rem; font-weight: 600; }
+label span { color: var(--muted); font-weight: 400; }
+/* Consistent appearance for all form controls. */
 input, textarea, select {
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
+    width: 100%;
+    min-width: 0;
+    /* Soft tinted inputs stand out against the white form card. */
+    background: var(--input-background);
+    color: var(--text);
+    font: inherit;
+    font-size: 1.125rem;
+    padding: 15px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    text-shadow: none;
 }
+input::placeholder, textarea::placeholder { color: #52666d; opacity: 1; }
+textarea { resize: vertical; min-height: 110px; }
+/* A visible focus ring helps people navigate the page with a keyboard. */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+.form-footer { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; border-top: 1px solid var(--border); padding-top: 22px; }
+.form-footer p { color: var(--muted); font-size: 1.125rem; }
+/* Closing brand and description below the form. */
+footer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-top: 32px; color: var(--muted); font-size: 1.125rem; }
+footer p { margin: 0; }
 
-
-input, textarea, select, button {
-    font-family: inherit;
-    font-size: 16px;
+/* Tablet and smaller screens: stack service cards and reduce spacing. */
+@media (max-width: 760px) {
+    body { padding: 24px; }
+    header { padding: 48px 0 36px; }
+    .service-list { grid-template-columns: 1fr; }
+    article > p:not(.service-price):not(.service-duration):not(.service-number) { min-height: 0; }
+    .booking-steps { gap: 16px; }
+    form { padding: 24px; }
 }
-
-
-label {
-    font-weight: bold;
+/* Phone screens: use one column for instructions and form fields. */
+@media (max-width: 480px) {
+    body { padding: 20px 16px 32px; }
+    header h1 { letter-spacing: -2px; }
+    .booking-steps, form { grid-template-columns: 1fr; }
+    .section-heading, .form-footer, footer { flex-direction: column; gap: 10px; }
+    .form-footer { align-items: stretch; }
+    form { padding: 22px 18px; }
 }
-
-
-.service-list {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-}
-
-
-@media (max-width: 600px) {
-    .service-list {
-        flex-direction: column;
-    }
-}
-
-
-input:focus, textarea:focus, select:focus {
-    outline: 2px solid #48494b;
-    outline-offset: 2px;
-}
-
-
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-
-form h2, form p {
-    margin: 0;
-}
-
-
-.service-list button {
-    margin-top: auto;
-}
-
-
-article h3, article p {
-    margin: 0;
-}
-
-
-header {
-    margin-bottom: 32px;
-}
-
-header h1, header p {
-    margin: 0;
-}
-
-header p {
-    margin-top: 8px;
+/* Respect the user's preference for less animation and scrolling motion. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    article, button { transition: none; }
+    article:hover { transform: none; }
 }
