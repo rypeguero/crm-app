@@ -107,6 +107,11 @@
 </div>
 
 <div class="form-field">
+    <label for="customer-phone" id="customerPhone">Your phone number</label>
+    <input type="tel" id="customer-phone" name="customerPhone" autocomplete="tel" placeholder="(555) 123-4567" required>
+</div>
+
+<div class="form-field">
     <!-- Native date and time inputs provide the browser's built-in pickers. -->
     <label for="appointment-date">What day works for you?</label>
     <input type="date" id="appointment-date" name="appointmentDate" required>
@@ -117,7 +122,7 @@
     <input type="time" id="appointment-time" name="appointmentTime" required>
 </div>   
 
-<div class="form-field"> 
+<div class="form-field form-field-wide">
     <!-- Notes are optional, so this field does not have the required attribute. -->
     <label for="appointment-notes">Anything we should know? <span>(Optional)</span></label>
     <textarea id="appointment-notes" name="appointmentNotes" rows="4" placeholder="Tell us a little about what you need…"></textarea>
@@ -128,6 +133,9 @@
         <p>We’ll review your request before confirming your appointment.</p>
         <button type="submit">Request appointment &rarr;</button>
     </div>
+
+<!-- Announces feedback to visitors, including screen reader users. -->
+<p id="form-message" role="status"></p>
 
 </form>
 </main>

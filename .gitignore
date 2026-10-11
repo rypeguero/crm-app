@@ -1,0 +1,35 @@
+# Python virtual environments (installed packages stay on your computer).
+.venv/
+venv/
+env/
+
+# Files Python generates when running code.
+__pycache__/
+*.py[cod]
+
+# Local settings and secrets; an example file can be committed.
+.env
+.env.*
+!.env.example
+
+# Local databases and their temporary files.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Test and coverage output.
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Operating system files.
+.DS_Store
+Thumbs.db
+Desktop.ini
